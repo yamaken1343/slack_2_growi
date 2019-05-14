@@ -1,0 +1,6 @@
+GROWI_API_KEY = ''
+GROWI_URL = ''
+GROWI_PATH = ''
+
+SLACK_TOKEN = ''
+SLACK_CHANNEL_ID = ''
