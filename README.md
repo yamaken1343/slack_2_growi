@@ -18,4 +18,6 @@ Growiのユーザ設定から取得できるAPI KEY
 - SLACK_TOKEN:
 SlackのAPI KEY 取得方法は割愛
 - SLACK_CHANNEL_ID:
-チャンネルのリンクに含まれるチャンネルのID
+チャンネルのID URLに含まれている
+
+例: `https://hoge.slack.com/messages/CEZRAR8UB/details/` ならば `CEZRAR8UB`がID
