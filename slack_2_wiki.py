@@ -44,14 +44,14 @@ def get_yesterday_post():
 
     url = 'https://slack.com/api/channels.history'
 
-    # params = {'token': SLACK_TOKEN,
-    #           'channel': SLACK_CHANNEL_ID,
-    #           'latest': unix_today,
-    #           'oldest': unix_yesterday}
+    params = {'token': SLACK_TOKEN,
+              'channel': SLACK_CHANNEL_ID,
+              'latest': unix_today,
+              'oldest': unix_yesterday}
 
     # for Debug
-    params = {'token': SLACK_TOKEN,
-              'channel': SLACK_CHANNEL_ID}
+    # params = {'token': SLACK_TOKEN,
+    #           'channel': SLACK_CHANNEL_ID}
 
     response = requests.get(url, params)
     r_text = response.json()
@@ -70,7 +70,7 @@ def get_yesterday_post():
     return news_list
 
 
-# get_yesterday_postで取得したリストをWikiの投稿に適した形に修正
+# get_yesterday_postで取得したリストをWikiの投稿に適した形に変形
 def list_2_md(news_list):
     if not news_list:
         return -1
