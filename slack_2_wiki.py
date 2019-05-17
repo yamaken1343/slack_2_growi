@@ -20,6 +20,10 @@ def get_previous_page(path):
 
 # append_bodyを追記してGrowiのページを更新する
 def content_update(path, append_body):
+    if append_body == -1:
+        print("no contents")
+        return
+
     url = GROWI_URL + '/_api/pages.update'
 
     p_id, rev_id, pre_body = get_previous_page(path)
@@ -31,7 +35,7 @@ def content_update(path, append_body):
 
     r = requests.post(url, post_data)
 
-    print(r.status_code)
+    print(r.status_code, "update page complete!")
 
 
 # Slackから昨日投稿されたポストに含まれるリンクのタイトル,URL,冒頭の文をリストとして取得する
@@ -40,7 +44,7 @@ def get_yesterday_post():
     yesterday = today + datetime.timedelta(days=-1)
 
     unix_today = datetime.datetime.combine(today, datetime.time()).timestamp()
-    unix_yesterday = datetime.datetime.combine(yesterday, datetime.time())
+    unix_yesterday = datetime.datetime.combine(yesterday, datetime.time()).timestamp()
 
     url = 'https://slack.com/api/channels.history'
 
@@ -74,8 +78,8 @@ def get_yesterday_post():
 def list_2_md(news_list):
     if not news_list:
         return -1
-    today = datetime.date.today()
-    md = '## {}\n'.format(today)
+    yesterday = datetime.date.today() + datetime.timedelta(days=-1)
+    md = '## {}\n'.format(yesterday)
     for n in news_list:
         md += '### {}\n{}\n{}\n'.format(n['title'], n['link'], n['text'])
 
